@@ -1,0 +1,33 @@
+{% extends "parliament/base.html" %}
+
+{% block title %}Make a proposal{% endblock %}
+{% block description %}This is where you make your proposal.{% endblock %}
+
+{% block content %}
+<style>
+	textarea{
+		width:100%;
+	}
+</style>
+<div class="row-fluid">
+    <div class="span10 offset1">
+        <h1>Making a proposal</h1>
+        <hr>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        <form class="form" action="/parliament/proposals/create/" method="post">{% csrf_token %}
+		    {% for field in form %}		       
+				  <div class="control-group">
+					<label class="control-label" for="{{ field.auto_id }}"><h4>{{ field.label}}</h4></label>
+				    <div class="controls">
+				     	{{ field }}
+				    </div>
+				    <p>
+				     	{{ field.errors }}
+				    </p>
+				  </div>
+		    {% endfor %}
+		    <p><input type="submit" value="Send message" /></p>
+		</form>
+    </div>
+</div>
+{% endblock content %}

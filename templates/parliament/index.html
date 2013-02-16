@@ -1,0 +1,24 @@
+{% extends "parliament/base.html" %}
+{% load humanize %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+{% for p in proposals_list|dictsortreversed:"upvotes"%}
+    <div class="row-fluid">
+        <div class="span12 index-list">
+            <h3 class="span12">
+                <a href="/parliament/proposals/{{ p.id }}/">{{ p.title }}</a>
+            </h3>
+            <p class="span12">{{ p.desc|truncatewords:30 }} </p>
+            <p>Proposed by <a href="#">{{ p.author.short_name }}</a>, in {{ p.timestamp|date:"j F Y" }}</p>
+            <p>
+                {% for tag in p.tag_set.all %}
+                    <a class="label label-info" href="/parliament/tags/{{ tag.name }}">{{ tag.name }}</a>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+    <br/>
+{% endfor %}
+{% endblock content %}

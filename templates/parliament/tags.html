@@ -1,0 +1,24 @@
+{% extends "parliament/base.html" %}
+
+{% block title %}List of proposals{% endblock %}
+{% block description %}TODO{% endblock %}
+
+{% block content %} 
+<div class="row-fluid">
+    <div class="span10 offset1">
+        <h2>Tags</h2>
+        <p>These are the all tags of all proposals. You can select one to view only proposals with that tag.</p>
+        <br/>
+        {% if tags_list %}
+            <p align="center">
+            {% for t in tags_list %}
+                <a class="btn btn-large btn-info" href="/parliament/tags/{{ t.name }}">{{ t.name }}</a>&nbsp;&nbsp;
+            {% endfor %}
+            </p>
+        {% else %}
+            <p align="center">No tags found.</p>
+        {% endif %}
+    </div>
+</div>            
+<hr>
+{% endblock content %}

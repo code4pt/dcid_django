@@ -1,0 +1,94 @@
+{% extends "parliament/base.html" %}
+{% load humanize %}
+
+{% block title %}List of proposals{% endblock %}
+{% block description %}TODO{% endblock %}
+
+{% block content %}
+<div>
+	<ul class="nav nav-tabs" id="myTab">
+  		<li class="active"><a href="#OrderUpVotes" data-toggle="tab">Up Votes</a></li>
+  		<li><a href="#OrderByViews" data-toggle="tab">Views</a></li>
+	</ul>
+</div>
+{% if proposals_list %} 
+	<div class="tab-content">
+  		<div class="tab-pane active" id="OrderUpVotes">
+  			{% for p in proposals_list|dictsortreversed:"upvotes"%}
+        		<div class="row-fluid">
+            		<div class="span12" style="background-color: #EEEEEE">
+                		<div class="span3 v-center h-center" style="background-color: #DDDDDD">
+                    		<h1>{{ p.score }}</h1>
+                    		<p>
+                                <b>
+                                    <a class="btn btn-success">
+                                        <i class="icon-thumbs-up icon-white"></i>&nbsp;{{ p.upvotes }}
+                                    </a>&nbsp;&nbsp;
+                                    <a class="btn btn-danger">
+                                        <i class="icon-thumbs-down icon-white"></i>&nbsp;{{ p.downvotes }}
+                                    </a>
+                                </b>
+                            </p>
+                    		<p>{{ p.representativity|intcomma }}% citizens voted</p>
+                		</div>
+                		<div class="span9">
+                    		<h3>
+                                <a href="/parliament/proposals/{{ p.id }}/">{{ p.title }}</a>
+                            </h3>
+                    		<p>Proposed by <a href="#">{{ p.author.short_name }}</a>, in {{ p.timestamp|date:"j F Y" }}</p>
+                    		<p>
+                                {% for tag in p.tag_set.all %}
+                                    <a class="label label-info" href="/parliament/tags/{{ tag.name }}">{{ tag.name }}</a>
+                                {% endfor %}
+                            </p>
+                		</div>
+            		</div>
+        		</div>
+        		<br/>
+  			{% endfor %}
+  		</div>
+  		<div class="tab-pane" id="OrderByViews">
+  			{% for p in proposals_list|dictsortreversed:"views"%}
+        		<div class="row-fluid">
+            		<div class="span12" style="background-color: #EEEEEE">
+                		<div class="span3 v-center h-center" style="background-color: #DDDDDD">
+                    		<h1>{{ p.score }}</h1>
+                    		<p>
+                                <b>
+                                    <a class="btn btn-success">
+                                        <i class="icon-thumbs-up icon-white"></i>&nbsp;{{ p.upvotes }}
+                                    </a>&nbsp;&nbsp;
+                                    <a class="btn btn-danger">
+                                        <i class="icon-thumbs-down icon-white"></i>&nbsp;{{ p.downvotes }}
+                                    </a>
+                                </b>
+                            </p>
+                    		<p>{{ p.representativity|intcomma }}% citizens voted</p>
+                		</div>
+                		<div class="span9">
+                   		    <h3>
+                                <a href="/parliament/proposals/{{ p.id }}/">{{ p.title }}</a>
+                            </h3>
+                   	 		<p>Proposed by <a href="#">{{ p.author.short_name }}</a>, in {{ p.timestamp|date:"j F Y" }}</p>
+                    		<p>
+                                {% for tag in p.tag_set.all %}
+                                    <a class="label label-info" href="/parliament/tags/{{ tag.name }}">{{ tag.name }}</a>
+                                {% endfor %}
+                            </p>
+                		</div>
+            		</div>
+				</div>
+        		<br/>
+    		{% endfor %}
+    	</div>
+    </div>
+
+</br/>
+{% else %}
+    <div class="row-fluid">
+        <div class="span10 offset1" style="background-color: #EEEEEE">
+            <p align="center">No proposals found.</p>
+        </div>
+    </div>
+{% endif %}
+{% endblock content %}
