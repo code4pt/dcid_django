@@ -45,6 +45,9 @@ class Proposal(models.Model):
 	def score(self):
 		return self.upvotes - self.downvotes
 	
+	def total_votes(self):
+		return self.upvotes + self.downvotes
+		
 	def voteup(self):
 		self.upvotes += 1
 	
