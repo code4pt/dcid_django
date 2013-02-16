@@ -53,9 +53,6 @@ class Proposal(models.Model):
 				
 	def __unicode__(self):
 		return self.title
-	
-	
-	
 
 class Tag(models.Model):
 	"""A Tag is a subject or theme that classifies a specimen (like a

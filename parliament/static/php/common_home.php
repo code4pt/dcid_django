@@ -14,7 +14,7 @@ $navbar_top_home = '
                         <li class="active"><a href="/">Home</a></li>
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/daas/">DaaS</a></li>
+                                <li><a href="/dcid/">dcid</a></li>
                             </ul>
                         </li>
                     </ul>

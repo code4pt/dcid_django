@@ -1,4 +1,4 @@
-# Django settings for daas project.
+# Django settings for dcid project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -11,11 +11,11 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',	# Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'dcid_db', 					  	# Or path to database file if using sqlite3.
-        'USER': 'admin',						# Not used with sqlite3.
-        'PASSWORD': 'admin',			# Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'dcid_db',                      # Or path to database file if using sqlite3.
+        'USER': 'admin',                      # Not used with sqlite3.
+        'PASSWORD': 'admin',                  # Not used with sqlite3.
+        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -78,7 +78,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '!e)5^#c572+s#@b1r8r$3&amp;g$_=#^jl)%%ht!%_rr1qc1vjnb&amp;b'
+SECRET_KEY = '_5s047mnm!*flrgn)es8@kzigeqnarc2s@_q9wxkwve5c60f!5'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -103,8 +103,10 @@ ROOT_URLCONF = 'dcid.urls'
 WSGI_APPLICATION = 'dcid.wsgi.application'
 
 TEMPLATE_DIRS = (
-        "/home/paulo/code4pt/dcid/templates/",
-    # Strings here, like "/home/html/django_templates" or "C:/www/django/templates". ALWAYS use forward slashes.
+	"C:/wamp/www/dcid/templates/",
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
 )
 
 INSTALLED_APPS = (

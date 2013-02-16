@@ -1,3 +1,3 @@
-ï»¿#dcid
+#dcid
 
-**DecisÃ£o do CidadÃ£o, Ã© vocÃª que dcid!**
+**Decisão do Cidadão, é você que dcid!**

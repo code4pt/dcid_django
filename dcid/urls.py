@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     
     # Examples:
-    # url(r'^$', 'daas.views.home', name='home'),
+    # url(r'^$', 'dcid.views.home', name='home'),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 )

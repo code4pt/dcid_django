@@ -4,6 +4,17 @@
 {% block title %}List of proposals{% endblock %}
 {% block description %}TODO{% endblock %}
 
+{% block navbar-content %}
+    <a class="brand" href="/parliament/">dcid</a>
+    <div class="nav-collapse collapse" style="height: 0px; ">
+        <ul class="nav">
+            <li><a href="/parliament/">Home</a></li>
+            <li class="active"><a href="/parliament/proposals/">Proposals</a></li>
+            <li><a href="/parliament/tags/">Tags</a></li>
+        </ul>
+    </div>
+{% endblock navbar-content %}
+
 {% block content %}
 <div>
 	<ul class="nav nav-tabs" id="myTab">
