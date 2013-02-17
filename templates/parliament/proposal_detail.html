@@ -3,50 +3,58 @@
 {% block title %}{{ proposal.title }}{% endblock %}
 {% block description %}{{ proposal.desc|slice:":50" }}{% endblock %}
 
-{% block content %}     
-<div class="row-fluid">
-    <div class="span12">
-        <h1>{{ proposal.title }}</h1>
-        <hr>
-        <div class="row-fluid">
-            <div class="span8">
-                <p class="lead">{{ proposal.desc }}</p>
-                <br/><h4>Arguments:</h4>
-                <p>{{ proposal.reasons }}</p>
-            </div>
-            
-            <div class="span4">
-                
-                {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-                <form action="/parliament/proposal/{{ proposal.id }}/vote/" method="post">
-                {% csrf_token %}
-                    <input type="button" class="btn btn-success" name="choice" id="up" value="SIM" />
-                    <input type="button" class="btn btn-danger" name="choice" id="down" value="NÃO" />
-                    <div class="form-actions">
-                        <button type="button" class="btn">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
-                
-                
-                
-                <p>votes: <b><a class="btn btn-success"> {{ proposal.upvotes }}</a> <a class="btn btn-danger"> {{ proposal.downvotes }}</a></b></p><br/>
-            </div>
-            <!-- BACKUP (this code works!! don't delete)
-                <div class="span4">
-                <p>votes: <b><a class="btn btn-success"><i class="icon-thumbs-up icon-white"></i> {{ proposal.upvotes }}</a> <a class="btn btn-danger"><i class="icon-thumbs-down icon-white"></i> {{ proposal.downvotes }}</a></b></p><br/>
-                <p>tags: <b>{% for tag in proposal.get_tags %}<a class="label label-info" href="#">{{ tag.name }}</a> {% endfor %}</b></p>
-                <p>viewed: <b>{{ proposal.views }} times</b></p>
-                <p>since: <b>{{ proposal.timestamp|date:"j M Y" }}</b></p>
-                <p>proposer: <b>{{ proposal.author.short_name }}</b></p>
-                <p><a class="btn" onclick="confirm_delete({{ proposal.id }})"><i class="icon-trash"></i> delete proposal</a></p>
-            </div>
-            -->
-        </div>
-        <hr>
-    </div>
+{% block navbar-content %}
+<a class="brand" href="/parliament/">dcid</a>
+<div class="nav-collapse collapse" style="height: 0px;">
+    <ul class="nav">
+        <li><a href="/parliament/">Home</a></li>
+        <li class="active"><a href="/parliament/proposals/">Proposals</a></li>
+        <li><a href="/parliament/tags/">Tags</a></li>
+        <li><a href="#"><!-- empty space --></a></li>
+        <li><a href="/parliament/proposals/create">Make a proposal</a></li>
+    </ul>
 </div>
+{% endblock navbar-content %}
+
+{% block content %}
+<h1>{{ proposal.title }}</h1>
+<br/>
+<div class="row-fluid">
+    <div class="span8">
+        <p class="lead">{{ proposal.desc }}</p>
+        <br/><h4>Arguments:</h4>
+        <p>{{ proposal.reasons }}</p>
+    </div>
+    
+    <div class="span4">
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+        <form action="/parliament/proposal/{{ proposal.id }}/vote/" method="post">
+        {% csrf_token %}
+            <input type="button" class="btn btn-success" name="choice" id="up" value="SIM" />
+            <input type="button" class="btn btn-danger" name="choice" id="down" value="NÃO" />
+            <div class="form-actions">
+                <button type="button" class="btn">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+        
+        
+        
+        <p>votes: <b><a class="btn btn-success"> {{ proposal.upvotes }}</a> <a class="btn btn-danger"> {{ proposal.downvotes }}</a></b></p><br/>
+    </div>
+    <!-- BACKUP (this code works!! don't delete)
+        <div class="span4">
+        <p>votes: <b><a class="btn btn-success"><i class="icon-thumbs-up icon-white"></i> {{ proposal.upvotes }}</a> <a class="btn btn-danger"><i class="icon-thumbs-down icon-white"></i> {{ proposal.downvotes }}</a></b></p><br/>
+        <p>tags: <b>{% for tag in proposal.get_tags %}<a class="label label-info" href="#">{{ tag.name }}</a> {% endfor %}</b></p>
+        <p>viewed: <b>{{ proposal.views }} times</b></p>
+        <p>since: <b>{{ proposal.timestamp|date:"j M Y" }}</b></p>
+        <p>proposer: <b>{{ proposal.author.short_name }}</b></p>
+        <p><a class="btn" onclick="confirm_delete({{ proposal.id }})"><i class="icon-trash"></i> delete proposal</a></p>
+    </div>
+    -->
+</div>
+<hr>
             
 <div class="row-fluid">
     <div class="span12">

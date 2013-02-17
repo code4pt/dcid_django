@@ -3,25 +3,37 @@
 {% block title %}Proposals tagged with "{{tag.name}}"{% endblock %}
 {% block description %}TODO{% endblock %}
 
-{% block content %} 
-<div class="row-fluid">
-    <div class="span10 offset1">
-        <h2>{{ tag.name }}</h2>
-        <p><i>{{ tag.desc }}</i></p>
-        <br/>
-    </div>
+{% block navbar-content %}
+<a class="brand" href="/parliament/">dcid</a>
+<div class="nav-collapse collapse" style="height: 0px;">
+    <ul class="nav">
+        <li><a href="/parliament/">Home</a></li>
+        <li><a href="/parliament/proposals/">Proposals</a></li>
+        <li class="active"><a href="/parliament/tags/">Tags</a></li>
+        <li><a href="#"><!-- empty space --></a></li>
+        <li><a href="/parliament/proposals/create">Make a proposal</a></li>
+    </ul>
 </div>
+{% endblock navbar-content %}
+
+{% block content %}
+<h2>{{ tag.name }}</h2>
+<p><i>{{ tag.desc }}</i></p>
+<br/>
 {% for p in tagged_proposals %}
     <div class="row-fluid">
-        <div class="span10 offset1" style="background-color: #EEEEEE">
+        <div class="span12" style="background-color: #EEEEEE">
             <div class="span2 v-center h-center" style="background-color: #DDDDDD">
                 <h1>{{ p.score }}</h1>
-                <p><b><a class="btn btn-success"><i class="icon-thumbs-up icon-white"></i> {{ p.upvotes }}</a> <a class="btn btn-danger"><i class="icon-thumbs-down icon-white"></i> {{ p.downvotes }}</a></b></p>
+                <p><b><a class="btn btn-success"> <i class="icon-thumbs-up icon-white"></i>&nbsp;{{ p.upvotes }} </a>&nbsp;&nbsp; <a class="btn btn-danger"> <i class="icon-thumbs-down icon-white"></i>&nbsp;{{ p.downvotes }}</a></b></p>
             </div>
-            <div class="span8">
+            <div class="span10">
                 <h3><a href="/parliament/proposals/{{ p.id }}/">{{ p.title }}</a></h3>
                 <p>Proposed by <a href="#">{{ p.author.short_name }}</a>, in {{ p.timestamp|date:"j F Y" }}</p>
-                <p>{% for tag in p.get_tags %}<a class="label label-info" href="/parliament/tags/{{ tag.name }}">{{ tag.name }}</a> {% endfor %}</p>
+                <p> {% for tag in p.tag_set.all %}
+                        <a class="label label-info" href="/parliament/tags/{{ tag.name }}">{{ tag.name }}</a>
+                    {% endfor %}
+                </p>
             </div>
         </div>
     </div>

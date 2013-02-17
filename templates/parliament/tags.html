@@ -3,21 +3,31 @@
 {% block title %}List of proposals{% endblock %}
 {% block description %}TODO{% endblock %}
 
-{% block content %} 
-<div class="row-fluid">
-    <div class="span10 offset1">
-        <h2>Tags</h2>
-        <p>These are the all tags of all proposals. You can select one to view only proposals with that tag.</p>
-        <br/>
-        {% if tags_list %}
-            <p align="center">
-            {% for t in tags_list %}
-                <a class="btn btn-large btn-info" href="/parliament/tags/{{ t.name }}">{{ t.name }}</a>&nbsp;&nbsp;
-            {% endfor %}
-            </p>
-        {% else %}
-            <p align="center">No tags found.</p>
-        {% endif %}
-    </div>
+{% block navbar-content %}
+<a class="brand" href="/parliament/">dcid</a>
+<div class="nav-collapse collapse" style="height: 0px;">
+    <ul class="nav">
+        <li><a href="/parliament/">Home</a></li>
+        <li><a href="/parliament/proposals/">Proposals</a></li>
+        <li class="active"><a href="/parliament/tags/">Tags</a></li>
+        <li><a href="#"><!-- empty space --></a></li>
+        <li><a href="/parliament/proposals/create">Make a proposal</a></li>
+    </ul>
 </div>
+{% endblock navbar-content %}
+
+{% block content %}
+<h1>Tags</h1>
+<br/>
+<p>These are the all tags of all proposals. You can select one to view only proposals with that tag.</p>
+<br/>
+{% if tags_list %}
+    <p align="center">
+    {% for t in tags_list %}
+        <a class="btn btn-large btn-info" href="/parliament/tags/{{ t.name }}">{{ t.name }}</a>&nbsp;&nbsp;
+    {% endfor %}
+    </p>
+{% else %}
+    <p align="center">No tags found.</p>
+{% endif %}
 {% endblock content %}

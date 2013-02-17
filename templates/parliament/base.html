@@ -38,6 +38,8 @@
                             <li class="active"><a href="/parliament/">Home</a></li>
                             <li><a href="/parliament/proposals/">Proposals</a></li>
                             <li><a href="/parliament/tags/">Tags</a></li>
+                            <li><a href="#"><!-- empty space --></a></li>
+                            <li><a href="/parliament/proposals/create">Make a proposal</a></li>
                         </ul>
                     </div>
                     {% endblock navbar-content %}
@@ -46,17 +48,27 @@
         </div>
         {% endblock navbar %}
         
+        {% block content-container %}
         <div class="container-fluid">
-        {% block content %}
-        <!-- Le content -->
-        {% endblock content %}
-        
-        {% block footer %}
-            <hr/>
-            <footer>
-                <p>&copy; Code4PT 2012</p>
-            </footer>
-        {% endblock footer %}        
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <!-- Le content -->
+                    {% block content %}{% endblock content %}
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <!-- Le footer -->
+                    {% block footer %}
+                        <hr/>
+                        <footer>
+                            <p>&copy; Code4PT 2012</p>
+                        </footer>
+                    {% endblock footer %}
+                </div>
+            </div>
+        </div>
+        {% endblock content-container %}
         </div>
 
         {% block scripts %}

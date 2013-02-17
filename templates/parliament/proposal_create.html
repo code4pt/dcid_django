@@ -1,33 +1,44 @@
 {% extends "parliament/base.html" %}
 
+<!-- TODO this should be removed, use css classes to customize forms instead -->
+{% block more-styles %}
+<style>
+    textarea {width:100%;} /* maximize input textbox */
+</style>
+{% endblock %}
+
 {% block title %}Make a proposal{% endblock %}
 {% block description %}This is where you make your proposal.{% endblock %}
 
-{% block content %}
-<style>
-	textarea{
-		width:100%;
-	}
-</style>
-<div class="row-fluid">
-    <div class="span10 offset1">
-        <h1>Making a proposal</h1>
-        <hr>
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-        <form class="form" action="/parliament/proposals/create/" method="post">{% csrf_token %}
-		    {% for field in form %}		       
-				  <div class="control-group">
-					<label class="control-label" for="{{ field.auto_id }}"><h4>{{ field.label}}</h4></label>
-				    <div class="controls">
-				     	{{ field }}
-				    </div>
-				    <p>
-				     	{{ field.errors }}
-				    </p>
-				  </div>
-		    {% endfor %}
-		    <p><input type="submit" value="Send message" /></p>
-		</form>
-    </div>
+{% block navbar-content %}
+<a class="brand" href="/parliament/">dcid</a>
+<div class="nav-collapse collapse" style="height: 0px;">
+    <ul class="nav">
+        <li><a href="/parliament/">Home</a></li>
+        <li><a href="/parliament/proposals/">Proposals</a></li>
+        <li><a href="/parliament/tags/">Tags</a></li>
+        <li><a href="#"><!-- empty space --></a></li>
+        <li class="active"><a href="/parliament/proposals/create">Make a proposal</a></li>
+    </ul>
 </div>
+{% endblock navbar-content %}
+
+{% block content %}
+<h1>Make a proposal</h1>
+<br/>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form class="form" action="/parliament/proposals/create/" method="post">{% csrf_token %}
+    {% for field in form %}
+    <div class="control-group">
+        <label class="control-label" for="{{ field.auto_id }}"><h4>{{ field.label}}</h4></label>
+        <div class="controls input-xxlarge">
+            {{ field }}
+        </div>
+        <p>
+            {{ field.errors }}
+        </p>
+    </div>
+    {% endfor %}
+    <p><input type="submit" value="Send message" /></p>
+</form>
 {% endblock content %}
