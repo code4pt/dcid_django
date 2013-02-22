@@ -15,4 +15,4 @@ def trim_3digits(n):
 	elif(ten_times == 2):
 		return number[:n_digits] + "M"
 	else:
-		return score
+		return number

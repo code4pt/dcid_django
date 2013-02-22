@@ -27,19 +27,6 @@
     </div>
     
     <div class="span4">
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-        <form action="/parliament/proposal/{{ proposal.id }}/vote/" method="post">
-        {% csrf_token %}
-            <input type="button" class="btn btn-success" name="choice" id="up" value="SIM" />
-            <input type="button" class="btn btn-danger" name="choice" id="down" value="NÃO" />
-            <div class="form-actions">
-                <button type="button" class="btn">Cancel</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-        </form>
-        
-        
         
         <p>votes: <b><a class="btn btn-success"> {{ proposal.upvotes }}</a> <a class="btn btn-danger"> {{ proposal.downvotes }}</a></b></p><br/>
     </div>
