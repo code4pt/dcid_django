@@ -33,7 +33,7 @@
     <!-- BACKUP (this code works!! don't delete)
         <div class="span4">
         <p>votes: <b><a class="btn btn-success"><i class="icon-thumbs-up icon-white"></i> {{ proposal.upvotes }}</a> <a class="btn btn-danger"><i class="icon-thumbs-down icon-white"></i> {{ proposal.downvotes }}</a></b></p><br/>
-        <p>tags: <b>{% for tag in proposal.get_tags %}<a class="label label-info" href="#">{{ tag.name }}</a> {% endfor %}</b></p>
+        <p>tags: <b>{% for tag in proposal.get_tags %}<a class="label label-info" href="/parliament/tags/{{ tag.name }}">{{ tag.name }}</a> {% endfor %}</b></p>
         <p>viewed: <b>{{ proposal.views }} times</b></p>
         <p>since: <b>{{ proposal.timestamp|date:"j M Y" }}</b></p>
         <p>proposer: <b>{{ proposal.author.short_name }}</b></p>
