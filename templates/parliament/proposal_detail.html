@@ -27,24 +27,22 @@
     </div>
     
     <div class="span4">
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-        <form action="/parliament/proposal/{{ proposal.id }}/vote/" method="post">
-        {% csrf_token %}
-            <input type="button" class="btn btn-success" name="choice" id="up" value="SIM" />
-            <input type="button" class="btn btn-danger" name="choice" id="down" value="NÃO" />
-            <div class="form-actions">
-                <button type="button" class="btn">Cancel</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-        </form>
-        
-        
-        
-        <p>votes: <b><a class="btn btn-success"> {{ proposal.upvotes }}</a> <a class="btn btn-danger"> {{ proposal.downvotes }}</a></b></p><br/>
+        <p>votes: 
+            <form class="btn btn-success" id="voteUp-prop{{ proposal.id }}" title="I agree with this proposal."
+                action="/parliament/action/proposal/"{{ proposal.id }}"/up/" method="POST"><b><i class="icon-thumbs-up icon-white"></i>&nbsp;{{ proposal.upvotes }}</b></form>
+       
+            <form class="btn btn-danger" id="voteDown-prop{{ proposal.id }}" title="I disagree with this proposal."
+                action="/parliament/action/proposal/"{{ proposal.id }}"/down/" method="POST"><b><i class="icon-thumbs-down icon-white"></i>&nbsp;{{ proposal.downvotes }}</b></form>
+        </p><br/>
+        <p>tags: <b>{% for tag in proposal.tag_set.all %}<a class="label label-info" href="#">{{ tag.name }}</a> {% endfor %}</b></p>
+        <p>viewed: <b>{{ proposal.views }} times</b></p>
+        <p>since: <b>{{ proposal.timestamp|date:"j M Y" }}</b></p>
+        <p>proposer: <b>{{ proposal.author.short_name }}</b></p>
+        <p><a class="btn" onclick="confirm_delete({{ proposal.id }})"><i class="icon-trash"></i> delete proposal</a></p>
     </div>
+    
     <!-- BACKUP (this code works!! don't delete)
-        <div class="span4">
+    <div class="span4">
         <p>votes: <b><a class="btn btn-success"><i class="icon-thumbs-up icon-white"></i> {{ proposal.upvotes }}</a> <a class="btn btn-danger"><i class="icon-thumbs-down icon-white"></i> {{ proposal.downvotes }}</a></b></p><br/>
         <p>tags: <b>{% for tag in proposal.get_tags %}<a class="label label-info" href="#">{{ tag.name }}</a> {% endfor %}</b></p>
         <p>viewed: <b>{{ proposal.views }} times</b></p>
@@ -76,4 +74,11 @@
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+
+</script>
+
+
 {% endblock content %}

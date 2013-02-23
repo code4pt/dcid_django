@@ -3,19 +3,23 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from parliament.models import Proposal, Tag, CreateProposalForm
 
+def index(request):
+	proposals_list = Proposal.objects.all().order_by('-timestamp')
+	return render(request, 'parliament/index.html', {'proposals_list': proposals_list})
+
 def proposals(request):
 	proposals_list = Proposal.objects.all().order_by('-timestamp')
 	return render(request, 'parliament/proposals.html', {'proposals_list': proposals_list})
 
 def proposal_detail(request, proposal_id):
 	proposal = get_object_or_404(Proposal, pk=proposal_id)
-	return render(request, 'parliament/proposal_detail.html', {'proposal': proposal}, context_instance=RequestContext(request))
+	return render(request, 'parliament/proposal_detail.html', {'proposal': proposal})
 
 def proposal_create(request):
 		if request.method == 'POST': # If the form has been submitted...
 			form = CreateProposalForm(request.POST) # A form bound to the POST data
 			if form.is_valid():
-				auth_id=form.cleaned_data['username']
+				auth_id = form.cleaned_data['username']
 				title = form.cleaned_data['title']
 				proposal = form.cleaned_data['proposal']
 				new_prop = Proposal.objects.create_proposal(auth_id,title,proposal)
@@ -39,6 +43,4 @@ def tag_detail(request, tag_name):
 	tagged_proposals = Proposal.objects.filter(tag__name = tag.name)
 	return render(request, 'parliament/tag_detail.html', {'tag': tag, 'tagged_proposals': tagged_proposals})
 
-def index(request):
-	proposals_list = Proposal.objects.all().order_by('-timestamp')
-	return render(request, 'parliament/index.html', {'proposals_list': proposals_list})
+# ========== Actions ==========
