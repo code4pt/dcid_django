@@ -22,9 +22,9 @@ class Person(models.Model):
 		return str(self.name)
 
 class ProposalManager(models.Manager):
-	def create_proposal(self,auth_name, title, msg):
+	def create_proposal(self,auth_name, title, description, benefits, whyurprop, tags, coord):
 		auth = Person.objects.get(name = auth_name)
-		newproposal = self.create(author=auth, title=title, desc=msg, timestamp=datetime.now())
+		newproposal = self.create(author=auth, title=title, desc=description, reasons=whyurprop, timestamp=datetime.now())
 		newproposal.save()
 		return newproposal
 
@@ -93,7 +93,10 @@ class Opinion(models.Model):
 		return "{0} | {1}".format(self.text[0:20], str(self.proposal))
 	
 class CreateProposalForm(forms.Form):
-	username= forms.CharField(label="Username", widget=forms.TextInput(attrs={ 'required': 'true' }));
 	title = forms.CharField(label="Title", widget=forms.TextInput(attrs={ 'required': 'true' }));
-	proposal = forms.CharField(label='Please submit your proposal', widget=forms.Textarea(attrs={ 'required': 'true' }))
+	description= forms.CharField(label="Description", widget=forms.Textarea(attrs={ 'required': 'true' }));
+	benefits = forms.CharField(label='Benefits', widget=forms.Textarea(attrs={ 'required': 'true' }))
+	whyurprop = forms.CharField(label='Why your proposal?', widget=forms.Textarea(attrs={ 'required': 'true' }))
+	tags = forms.CharField(label='Tags', widget=forms.Textarea(attrs={ 'required': 'true' }))
+	coord = forms.CharField(label='Coordinates', widget=forms.TextInput(attrs={ 'required': 'true' }))
 
