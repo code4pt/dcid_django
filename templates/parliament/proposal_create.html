@@ -1,12 +1,5 @@
 {% extends "parliament/base.html" %}
 
-<!-- TODO this should be removed, use css classes to customize forms instead -->
-{% block more-styles %}
-<style>
-    textarea {width:100%;} /* maximize input textbox */
-</style>
-{% endblock %}
-
 {% block title %}Make a proposal{% endblock %}
 {% block description %}This is where you make your proposal.{% endblock %}
 
@@ -30,89 +23,50 @@
 <form class="form" action="/parliament/proposals/create/" method="post">{% csrf_token %}
 
 	<div class="row-fluid">
-		<div class="span4">
+		<div class="span12">
 			<div class="control-group">
 		        <label class="control-label" for="title"><h4>{{form.title.label}}</h4></label>
 		        <div class="controls input-large">
             		{{ form.title }}
        			</div>
-		        <p>
-		            {{ form.title.errors }}
-		        </p>
+		        <p>{{ form.title.errors }}</p>
     		</div>
 		</div>
-	</div>
+	</div>	
 	<div class="row-fluid">
-		<div class="span4">
+		<div class="span12">
 			<div class="control-group">
 		        <label class="control-label" for="description"><h4>{{form.description.label}}</h4></label>
 		        <div class="controls input-large">
             		{{ form.description }}
        			</div>
-		        <p>
-		            {{ form.description.errors }}
-		        </p>
+		        <p>{{ form.description.errors }}</p>
     		</div>
 		</div>
-		<div class="span4">
-			<div class="control-group">
-		        <label class="control-label" for="benefits"><h4>{{form.benefits.label}}</h4></label>
-		        <div class="controls input-large">
-            		{{ form.benefits }}
-       			</div>
-		        <p>
-		            {{ form.benefits.errors }}
-		        </p>
-    		</div>
-		</div>
-		<div class="span4">
-			<div class="control-group">
-		        <label class="control-label" for="benefits"><h4>{{form.coord.label}}</h4></label>
-		        <div class="controls input-large">
-            		{{ form.coord}}
-       			</div>
-		        <p>
-		            {{ form.coord.errors }}
-		        </p>
-    		</div>
-		</div>
-	</div>
+	</div>		
 	<div class="row-fluid">
-		<div class="span4">
-			<div class="control-group">
-		        <label class="control-label" for="benefits"><h4>{{form.whyurprop.label}}</h4></label>
-		        <div class="controls input-large">
-            		{{ form.whyurprop }}
-       			</div>
-		        <p>
-		            {{ form.whyurprop.errors }}
-		        </p>
-    		</div>
-		</div>
-		<div class="span4">
-			<div class="control-group">
-		        <label class="control-label" for="benefits"><h4>{{form.tags.label}}</h4></label>
-		        <div class="controls input-large">
-            		{{ form.tags }}
-       			</div>
-		        <p>
-		            {{ form.tags.errors }}
-		        </p>
-    		</div>
-		</div>
-	</div>
-
-<!--    {% for field in form %} 
-    <div class="control-group">
-        <label class="control-label" for="{{ field.auto_id }}"><h4>{{ field.label}}</h4></label>
-        <div class="controls input-xxlarge">
-            {{ field }}
+        <div class="span12">
+            <div class="control-group">
+                <label class="control-label" for="title"><h4>{{form.benefits.label}}</h4></label>
+                <div class="controls input-large">
+                    {{ form.benefits }}
+                </div>
+                <p>{{ form.benefits.errors }}</p>
+            </div>
         </div>
-        <p>
-            {{ field.errors }}
-        </p>
     </div>
-    {% endfor %}-->
-    <p><input type="submit" value="Send message" /></p>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="control-group">
+                <label class="control-label" for="title"><h4>{{form.tags.label}}</h4></label>
+                <div class="controls input-large">
+                    {{ form.tags }}
+                </div>
+                <p>{{ form.tags.errors }}</p>
+            </div>
+        </div>
+    </div>
+
+    <p><input class="btn btn-inverse" type="submit" value="Submit proposal" /></p>
 </form>
 {% endblock content %}

@@ -21,12 +21,29 @@ class Person(models.Model):
 	def __unicode__(self):
 		return str(self.name)
 
+
+class CreateProposalForm(forms.Form):
+	"""
+	This class represents a form. This form is responsible for receiving input~
+	from a user in order to create a proposal.
+	"""
+	title = forms.CharField(label='Title', widget=forms.TextInput(attrs={ 'required': 'true', 'class': 'input-xxlarge' }));
+	description = forms.CharField(label='Description', widget=forms.Textarea(attrs={ 'required': 'true', 'rows': '4', 'class': 'input-xxlarge', 'placeholder': 'describe it in less than XX characters' }));
+	benefits = forms.CharField(label='Motivation / Benefits', widget=forms.Textarea(attrs={ 'required': 'true', 'rows': '4', 'class': 'input-xxlarge', 'placeholder': 'What are the benefits of implementing your proposal?' }))
+	tags = forms.CharField(label='Tags', widget=forms.TextInput(attrs={ 'required': 'true', 'class': 'input-xlarge', 'placeholder': 'no-spaces, separate, by, commas' }))
+
+
 class ProposalManager(models.Manager):
-	def create_proposal(self,auth_name, title, description, benefits, whyurprop, tags, coord):
-		auth = Person.objects.get(name = auth_name)
-		newproposal = self.create(author=auth, title=title, desc=description, reasons=whyurprop, timestamp=datetime.now())
+	"""
+	This class maps the input from CreateProposalForm into a Proposal object
+	"""
+	def create_proposal(self, auth_name, title, description, benefits, tags):
+		author_obj = Person.objects.get(name = auth_name)
+		# TODO get the tags or create them?
+		newproposal = self.create(author=author_obj, title=title, desc=description, reasons=benefits, timestamp=datetime.now())
 		newproposal.save()
 		return newproposal
+
 
 class Proposal(models.Model):
 	"""
@@ -60,6 +77,7 @@ class Proposal(models.Model):
 	def __unicode__(self):
 		return self.title
 
+
 class Tag(models.Model):
 	"""
 	A Tag is a subject or theme that classifies a specimen (like a
@@ -72,6 +90,7 @@ class Tag(models.Model):
 	
 	def __unicode__(self):
 		return self.name
+
 
 class Opinion(models.Model):
 	"""
@@ -91,12 +110,4 @@ class Opinion(models.Model):
 	
 	def __unicode__(self):
 		return "{0} | {1}".format(self.text[0:20], str(self.proposal))
-	
-class CreateProposalForm(forms.Form):
-	title = forms.CharField(label="Title", widget=forms.TextInput(attrs={ 'required': 'true' }));
-	description= forms.CharField(label="Description", widget=forms.Textarea(attrs={ 'required': 'true' }));
-	benefits = forms.CharField(label='Benefits', widget=forms.Textarea(attrs={ 'required': 'true' }))
-	whyurprop = forms.CharField(label='Why your proposal?', widget=forms.Textarea(attrs={ 'required': 'true' }))
-	tags = forms.CharField(label='Tags', widget=forms.Textarea(attrs={ 'required': 'true' }))
-	coord = forms.CharField(label='Coordinates', widget=forms.TextInput(attrs={ 'required': 'true' }))
 

@@ -16,14 +16,12 @@ def proposal_create(request):
 		if request.method == 'POST': # If the form has been submitted...
 			form = CreateProposalForm(request.POST) # A form bound to the POST data
 			if form.is_valid():
-				auth_id = 'alice wonderland'
+				auth_id = 'someone anonymous' # TODO get_or_404(person)
 				title = form.cleaned_data['title']
 				description = form.cleaned_data['description']
 				benefits = form.cleaned_data['benefits']
-				whyurprop = form.cleaned_data['whyurprop']
 				tags = form.cleaned_data['tags']
-				coord = form.cleaned_data['coord']
-				new_prop = Proposal.objects.create_proposal(auth_id,title,description,benefits,whyurprop,tags,coord)
+				new_prop = Proposal.objects.create_proposal(auth_id, title, description, benefits, tags)
 				return HttpResponseRedirect('/parliament/proposals/' + str(new_prop.id)) # Redirect after POST
 			else:
 				return HttpResponseRedirect('/parliament/proposal_create' + str(new_prop.id)) # Redirect after POST

@@ -2,6 +2,7 @@
 INSERT INTO `parliament_person` VALUES (2222,"bob builder","bob@builder.com");
 INSERT INTO `parliament_person` VALUES (3333,"clair de lune boudair","clair@boudair.com");
 INSERT INTO `parliament_person` VALUES (4444,"dionisus draconius","dionisus@draconius.com");
+INSERT INTO `parliament_person` VALUES (5555,"someone anonymous","someone@anonymous.com");
 
 INSERT INTO `parliament_tag`(`name`, `desc`) VALUES ("cm-cascais", "sem descrição");
 INSERT INTO `parliament_tag` VALUES ("cm-lisboa", "sem descrição");
