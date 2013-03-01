@@ -22,24 +22,24 @@
 <div class="row-fluid">
     <div class="span8">
         <p class="lead">{{ proposal.desc }}</p>
-        <br/><h4>Arguments:</h4>
+        <br/><h4>Motivation / Benefits:</h4>
         <p>{{ proposal.reasons }}</p>
+        <br/> <!-- for low resolutions, separates the previous text from voting buttons bellow -->
     </div>
     
     <div class="span4">
         
         <p>votes: <b><a class="btn btn-success"> {{ proposal.upvotes }}</a> <a class="btn btn-danger"> {{ proposal.downvotes }}</a></b></p><br/>
-    </div>
-    <!-- BACKUP (this code works!! don't delete)
-        <div class="span4">
+        
+        <!-- TODO this is the complete formatting
         <p>votes: <b><a class="btn btn-success"><i class="icon-thumbs-up icon-white"></i> {{ proposal.upvotes }}</a> <a class="btn btn-danger"><i class="icon-thumbs-down icon-white"></i> {{ proposal.downvotes }}</a></b></p><br/>
+        -->
         <p>tags: <b>{% for tag in proposal.get_tags %}<a class="label label-info" href="/parliament/tags/{{ tag.name }}">{{ tag.name }}</a> {% endfor %}</b></p>
         <p>viewed: <b>{{ proposal.views }} times</b></p>
         <p>since: <b>{{ proposal.timestamp|date:"j M Y" }}</b></p>
         <p>proposer: <b>{{ proposal.author.short_name }}</b></p>
         <p><a class="btn" onclick="confirm_delete({{ proposal.id }})"><i class="icon-trash"></i> delete proposal</a></p>
     </div>
-    -->
 </div>
 <hr>
             
