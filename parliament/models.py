@@ -28,8 +28,8 @@ class CreateProposalForm(forms.Form):
 	from a user in order to create a proposal.
 	"""
 	title = forms.CharField(label='Title', widget=forms.TextInput(attrs={ 'required': 'true', 'class': 'input-xxlarge' }));
-	description = forms.CharField(label='Description', widget=forms.Textarea(attrs={ 'required': 'true', 'rows': '4', 'class': 'input-xxlarge', 'placeholder': 'describe it in less than XX characters' }));
-	benefits = forms.CharField(label='Motivation / Benefits', widget=forms.Textarea(attrs={ 'required': 'true', 'rows': '4', 'class': 'input-xxlarge', 'placeholder': 'What are the benefits of implementing your proposal?' }))
+	description = forms.CharField(label='Description', widget=forms.Textarea(attrs={ 'required': 'true', 'rows': '3', 'class': 'input-xxlarge', 'placeholder': 'describe it in less than XX characters' }));
+	benefits = forms.CharField(label='Motivation / Benefits', widget=forms.Textarea(attrs={ 'required': 'true', 'rows': '3', 'class': 'input-xxlarge', 'placeholder': 'What are the benefits of implementing your proposal?' }))
 	tags = forms.CharField(label='Tags', widget=forms.TextInput(attrs={ 'required': 'true', 'class': 'input-xlarge', 'placeholder': 'no-spaces, separate, by, commas' }))
 
 

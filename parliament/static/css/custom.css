@@ -1,21 +1,25 @@
-/* The ghost, nudged to maintain perfect centering */
-.span2:before {
-  content: '';
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-  margin-right: -0.25em; /* Adjusts for spacing */
+body {
+    text-align: justify;
 }
 
-/* The element to be centered, can also be of any width and height */ 
+/* The ghost, nudged to maintain perfect centering */
+.span2:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+/* The element to be centered, can also be of any width and height */
 .v-center {
-  display: inline-block;
-  vertical-align: middle;
-  width: 300px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 300px;
 }
 
 .h-center {
-  text-align: center;
+    text-align: center;
 }
 
 .index-list {
