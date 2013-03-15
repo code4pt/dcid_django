@@ -23,9 +23,9 @@ def proposal_create(request):
 				title = form.cleaned_data['title']
 				proposal = form.cleaned_data['proposal']
 				new_prop = Proposal.objects.create_proposal(auth_id,title,proposal)
-				return HttpResponseRedirect('/parliament/proposals/' + str(new_prop.id)) # Redirect after POST
+				return HttpResponseRedirect('/parliament/proposals/' + str(new_prop.id_num)) # Redirect after POST
 			else:
-				return HttpResponseRedirect('/parliament/proposal_create' + str(new_prop.id)) # Redirect after POST
+				return HttpResponseRedirect('/parliament/proposal_create' + str(new_prop.id_num)) # Redirect after POST
 		else:
 			form = CreateProposalForm(auto_id=True) # An unbound form
 
