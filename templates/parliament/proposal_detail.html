@@ -28,17 +28,21 @@
     </div>
     
     <div class="span3">
-        
-        <p>votes: <b><a class="btn btn-success"> {{ proposal.upvotes }}</a> <a class="btn btn-danger"> {{ proposal.downvotes }}</a></b></p><br/>
-        
-        <!-- TODO this is the complete formatting
-        <p>votes: <b><a class="btn btn-success"><i class="icon-thumbs-up icon-white"></i> {{ proposal.upvotes }}</a> <a class="btn btn-danger"><i class="icon-thumbs-down icon-white"></i> {{ proposal.downvotes }}</a></b></p><br/>
-        -->
+        <p>votes: 
+            <a class="btn btn-success" id="voteUp-prop{{ proposal.id_num }}" title="I agree with this proposal."
+                href="/parliament/proposals/vote/{{ proposal.id_num }}/up/"><b><i class="icon-thumbs-up icon-white"></i>&nbsp;{{ proposal.upvotes }}</b></a>
+            <a class="btn btn-danger" id="voteDown-prop{{ proposal.id_num }}" title="I disagree with this proposal."
+                href="/parliament/proposals/vote/{{ proposal.id_num }}/down/"><b><i class="icon-thumbs-down icon-white"></i>&nbsp;{{ proposal.downvotes }}</b></a>
+        </p>
+        <div id="message-displayer" class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
         <p>tags: <b>{% for tag in proposal.get_tags %}<a class="label label-info" href="/parliament/tags/{{ tag.name }}">{{ tag.name }}</a> {% endfor %}</b></p>
         <p>viewed: <b>{{ proposal.views }} times</b></p>
         <p>since: <b>{{ proposal.timestamp|date:"j M Y" }}</b></p>
         <p>proposer: <b>{{ proposal.author.short_name }}</b></p>
-        <p><a class="btn" onclick="confirm_delete({{ proposal.id }})"><i class="icon-trash"></i> delete proposal</a></p>
+        <p><a class="btn" onclick="confirm_delete({{ proposal.id_num }})"><i class="icon-trash"></i> delete proposal</a></p>
     </div>
 </div>
 <hr>
@@ -73,4 +77,11 @@
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+
+</script>
+
+
 {% endblock content %}

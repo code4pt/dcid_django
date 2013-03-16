@@ -40,7 +40,7 @@
                     <p><b><a class="btn btn-success"> <i class="icon-thumbs-up icon-white"></i>&nbsp;{{ p.upvotes }} </a>&nbsp;&nbsp; <a class="btn btn-danger"> <i class="icon-thumbs-down icon-white"></i>&nbsp;{{ p.downvotes }}</a></b></p>
                 </div>
                 <div class="span10">
-                    <h3><a href="/parliament/proposals/{{ p.id }}/">{{ p.title }}</a></h3>
+                    <h3><a href="/parliament/proposals/{{ p.id_num }}/">{{ p.title }}</a></h3>
                     <p>Proposed by <a href="#">{{ p.author.short_name }}</a>, in {{ p.timestamp|date:"j F Y" }}</p>
                     <p> {% for tag in p.tag_set.all %}
                             <a class="label label-info" href="/parliament/tags/{{ tag.name }}">{{ tag.name }}</a>
@@ -62,7 +62,7 @@
                     <p><b><a class="btn btn-success"> <i class="icon-thumbs-up icon-white"></i>&nbsp;{{ p.upvotes }} </a>&nbsp;&nbsp; <a class="btn btn-danger"> <i class="icon-thumbs-down icon-white"></i>&nbsp;{{ p.downvotes }}</a></b></p>
                 </div>
                 <div class="span10">
-                    <h3><a href="/parliament/proposals/{{ p.id }}/">{{ p.title }}</a></h3>
+                    <h3><a href="/parliament/proposals/{{ p.id_num }}/">{{ p.title }}</a></h3>
                     <p>Proposed by <a href="#">{{ p.author.short_name }}</a>, in {{ p.timestamp|date:"j F Y" }}</p>
                     <p>
                         {% for tag in p.tag_set.all %}
@@ -85,7 +85,7 @@
                     <p><b><a class="btn btn-success"> <i class="icon-thumbs-up icon-white"></i>&nbsp;{{ p.upvotes }} </a>&nbsp;&nbsp; <a class="btn btn-danger"> <i class="icon-thumbs-down icon-white"></i>&nbsp;{{ p.downvotes }}</a></b></p>
                 </div>
                 <div class="span10">
-                    <h3><a href="/parliament/proposals/{{ p.id }}/">{{ p.title }}</a></h3>
+                    <h3><a href="/parliament/proposals/{{ p.id_num }}/">{{ p.title }}</a></h3>
                     <p>Proposed by <a href="#">{{ p.author.short_name }}</a>, in {{ p.timestamp|date:"j F Y" }}</p>
                     <p>
                         {% for tag in p.tag_set.all %}

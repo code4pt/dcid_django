@@ -24,7 +24,7 @@ class Person(models.Model):
 
 class CreateProposalForm(forms.Form):
 	"""
-	This class represents a form. This form is responsible for receiving input~
+	This class represents a form. This form is responsible for receiving input
 	from a user in order to create a proposal.
 	"""
 	title = forms.CharField(label='Title', widget=forms.TextInput(attrs={ 'required': 'true', 'class': 'input-xxlarge' }));
@@ -48,9 +48,10 @@ class ProposalManager(models.Manager):
 class Proposal(models.Model):
 	"""
 	This class represents a suggestion that's started by a Person and voted
-	by others. A proposal is backed up by the author's arguments and debated
-	through other Persons' Opinions.
+	by other Persons. A proposal is backed up by the author's arguments and
+	other Persons' Opinions.
 	"""
+	id_num = models.PositiveIntegerField(primary_key=True)
 	author = models.ForeignKey(Person, related_name="author")
 	title = models.CharField(max_length=70)
 	desc = models.CharField(max_length=300)
@@ -60,7 +61,7 @@ class Proposal(models.Model):
 	views = models.PositiveIntegerField(default=0)
 	timestamp = models.DateTimeField()
 	objects = ProposalManager()
-	# TODO delete orphaned tags! http://stackoverflow.com/questions/10609699/efficiently-delete-orphaned-m2m-objects-tags-in-django
+	# TODO delete orphaned tags? http://stackoverflow.com/questions/10609699/efficiently-delete-orphaned-m2m-objects-tags-in-django
 	
 	def score(self):
 		return self.upvotes - self.downvotes
@@ -68,14 +69,29 @@ class Proposal(models.Model):
 	def total_votes(self):
 		return self.upvotes + self.downvotes
 		
-	def voteup(self):
-		self.upvotes += 1
+	def set_upvotes(self, number):
+		if(number >= 0):
+			self.upvotes = number
 	
-	def votedown(self):
-		self.downvotes += 1
+	def set_downvotes(self, number):
+		if(number >= 0):
+			self.downvotes = number
 				
 	def __unicode__(self):
 		return self.title
+
+
+class ProposalVote(models.Model):
+	"""
+	A ProposalVote stores information about votes on proposals. A Person (who)
+	votes up or down (direction) a Proposal (what).  
+	"""
+	who = models.ForeignKey(Person)
+	what = models.ForeignKey(Proposal)
+	direction = models.BooleanField()	# true = upvote = vote in favor
+	
+	class Meta:
+		unique_together = ("who", "what")	# similar to PrimaryKey, that set must be unique 
 
 
 class Tag(models.Model):
