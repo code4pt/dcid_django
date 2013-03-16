@@ -81,6 +81,7 @@ class Proposal(models.Model):
 	def __unicode__(self):
 		return self.title
 
+
 class ProposalVote(models.Model):
 	"""
 	A ProposalVote stores information about votes on proposals. A Person (who)
