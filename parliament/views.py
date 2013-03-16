@@ -15,19 +15,19 @@ def proposal_detail(request, proposal_id):
 	return render(request, 'parliament/proposal_detail.html', {'proposal': proposal})
 
 def proposal_create(request):
-		if request.method == 'POST': # If the form has been submitted...
-			form = CreateProposalForm(request.POST) # A form bound to the POST data
-			if form.is_valid():
-				auth_id = form.cleaned_data['username']
-				title = form.cleaned_data['title']
-				proposal = form.cleaned_data['proposal']
-				new_prop = Proposal.objects.create_proposal(auth_id, title, proposal)
-				return HttpResponseRedirect('/parliament/proposals/' + str(new_prop.id_num)) # Redirect after POST
-			else:
-				return HttpResponseRedirect('/parliament/proposal_create' + str(new_prop.id_num)) # Redirect after POST
+	if request.method == 'POST': # If the form has been submitted...
+		form = CreateProposalForm(request.POST) # A form bound to the POST data
+		if form.is_valid():
+			auth_id = form.cleaned_data['username']
+			title = form.cleaned_data['title']
+			proposal = form.cleaned_data['proposal']
+			new_prop = Proposal.objects.create_proposal(auth_id, title, proposal)
+			return HttpResponseRedirect('/parliament/proposals/' + str(new_prop.id_num)) # Redirect after POST
 		else:
-			form = CreateProposalForm(auto_id=True) # An unbound form
-			return render(request, 'parliament/proposal_create.html', { 'form': form, })
+			return HttpResponseRedirect('/parliament/proposal_create' + str(new_prop.id_num)) # Redirect after POST
+	else:
+		form = CreateProposalForm(auto_id=True) # An unbound form
+		return render(request, 'parliament/proposal_create.html', { 'form': form, })
 
 def tags(request):
 	tags_list = Tag.objects.all().order_by('name')

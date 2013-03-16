@@ -87,9 +87,12 @@ class ProposalVote(models.Model):
 	A ProposalVote stores information about votes on proposals. A Person (who)
 	votes up or down (direction) a Proposal (what).  
 	"""
-	who = models.ForeignKey(Person)		# this is a primary key (use SQL to enforce it)
-	what = models.ForeignKey(Proposal)	# this is a primary key (use SQL to enforce it)
+	who = models.ForeignKey(Person)
+	what = models.ForeignKey(Proposal)
 	direction = models.BooleanField()	# true = upvote = vote in favor
+	
+	class Meta:
+		unique_together = ("who", "what")	# similar to PrimaryKey, that set must be unique 
 
 
 class Tag(models.Model):
