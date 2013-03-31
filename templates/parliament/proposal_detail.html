@@ -21,9 +21,11 @@
 <br/>
 <div class="row-fluid">
     <div class="span9">
-        <p class="lead">{{ proposal.desc }}</p>
-        <br/><h4>Motivation / Benefits:</h4>
-        <p>{{ proposal.reasons }}</p>
+        <p class="lead">{{ proposal.problem }}</p>
+        <br/><h4>Solution</h4>
+        <p>{{ proposal.solution }}</p>
+        <br/><h4>Benefits</h4>
+        <p>{{ proposal.benefits }}</p>
         <br/> <!-- for low resolutions, separates the previous text from voting buttons bellow -->
     </div>
     
@@ -35,10 +37,12 @@
                 href="/parliament/proposals/vote/{{ proposal.id_num }}/down/"><b><i class="icon-thumbs-down icon-white"></i>&nbsp;{{ proposal.downvotes }}</b></a>
         </p>
         <div id="message-displayer" class="alert alert-info">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ message }}
+            {{ message }} <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
-        <p>tags: <b>{% for tag in proposal.get_tags %}<a class="label label-info" href="/parliament/tags/{{ tag.name }}">{{ tag.name }}</a> {% endfor %}</b></p>
+        <p align="left">tags: {% for tag in proposal.tag_set.all %}
+                <a class="label label-info" href="/parliament/tags/{{ tag.name }}">{{ tag.name }}</a>
+            {% endfor %}
+        </p>
         <p>viewed: <b>{{ proposal.views }} times</b></p>
         <p>since: <b>{{ proposal.timestamp|date:"j M Y" }}</b></p>
         <p>proposer: <b>{{ proposal.author.short_name }}</b></p>
