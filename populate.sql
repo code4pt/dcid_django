@@ -1,4 +1,9 @@
-﻿INSERT INTO `parliament_person`(`id_num`, `name`, `email`) VALUES (1111,"alice wonderland","alice@wonderland.com");
+﻿-- fix Django's ORM limitations
+ALTER TABLE `parliament_tag_tagged_proposals` DROP `id`;
+ALTER TABLE  `parliament_tag_tagged_proposals` ADD PRIMARY KEY (  `tag_id` ,  `proposal_id` ) ;
+
+-- populate with dummy text
+INSERT INTO `parliament_person`(`id_num`, `name`, `email`) VALUES (1111,"alice wonderland","alice@wonderland.com");
 INSERT INTO `parliament_person` VALUES (2222,"bob builder","bob@builder.com");
 INSERT INTO `parliament_person` VALUES (3333,"clair de lune boudair","clair@boudair.com");
 INSERT INTO `parliament_person` VALUES (4444,"dionisus draconius","dionisus@draconius.com");
