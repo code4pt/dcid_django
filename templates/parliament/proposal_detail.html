@@ -28,9 +28,9 @@
         <p>{{ proposal.benefits }}</p>
         <br/> <!-- for low resolutions, separates the previous text from voting buttons bellow -->
     </div>
-    
+
     <div class="span3">
-        <p>votes: 
+        <p>votes:
             <a class="btn btn-success" id="voteUp-prop{{ proposal.id_num }}" title="I agree with this proposal."
                 href="/parliament/proposals/vote/{{ proposal.id_num }}/up/"><b><i class="icon-thumbs-up icon-white"></i>&nbsp;{{ proposal.upvotes }}</b></a>
             <a class="btn btn-danger" id="voteDown-prop{{ proposal.id_num }}" title="I disagree with this proposal."
@@ -50,7 +50,7 @@
     </div>
 </div>
 <hr>
-            
+
 <div class="row-fluid">
     <div class="span12">
         <h2 align="center">Voters' opinions</h2>

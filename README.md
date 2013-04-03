@@ -1,3 +1,6 @@
-﻿#dcid
+﻿~ dcid ~
+========
 
-**Decisão do Cidadão, é você que dcid!**
+*propose . discuss . decide*
+
+**D**ecisão do **Cid**adão

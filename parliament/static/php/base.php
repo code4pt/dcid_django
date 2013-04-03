@@ -25,7 +25,7 @@ $JS_scripts = '
 
 $footer = '
     <footer>
-        <p>&copy; Code4PT 2012</p>
+        <p>&copy; Code4PT 2012-2013</p>
     </footer>
 ';
 
