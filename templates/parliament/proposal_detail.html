@@ -33,6 +33,7 @@
         <p>votes:
             <a class="btn btn-success" id="voteUp-prop{{ proposal.id_num }}" title="I agree with this proposal."
                 href="/parliament/proposals/vote/{{ proposal.id_num }}/up/"><b><i class="icon-thumbs-up icon-white"></i>&nbsp;{{ proposal.upvotes }}</b></a>
+            &nbsp;
             <a class="btn btn-danger" id="voteDown-prop{{ proposal.id_num }}" title="I disagree with this proposal."
                 href="/parliament/proposals/vote/{{ proposal.id_num }}/down/"><b><i class="icon-thumbs-down icon-white"></i>&nbsp;{{ proposal.downvotes }}</b></a>
         </p>

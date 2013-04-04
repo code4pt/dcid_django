@@ -37,7 +37,8 @@
             <div class="span12" style="background-color: #EEEEEE">
                 <div class="span2 v-center h-center" style="background-color: #DDDDDD">
                     <h1>{{ p.score }}</h1>
-                    <p><b><a class="btn btn-success"> <i class="icon-thumbs-up icon-white"></i>&nbsp;{{ p.upvotes }} </a>&nbsp;&nbsp; <a class="btn btn-danger"> <i class="icon-thumbs-down icon-white"></i>&nbsp;{{ p.downvotes }}</a></b></p>
+                    <p><a class="btn btn-success" id="voteUp-prop{{ p.id_num }}" title="I agree with this proposal." href="/parliament/proposals/vote/{{ p.id_num }}/up/"><b><i class="icon-thumbs-up icon-white"></i>&nbsp;{{ p.upvotes }}</b></a>&nbsp;
+                       <a class="btn btn-danger" id="voteDown-prop{{ p.id_num }}" title="I disagree with this proposal." href="/parliament/proposals/vote/{{ p.id_num }}/down/"><b><i class="icon-thumbs-down icon-white"></i>&nbsp;{{ p.downvotes }}</b></a>
                 </div>
                 <div class="span10">
                     <h3><a href="/parliament/proposals/{{ p.id_num }}/">{{ p.title }}</a></h3>
@@ -59,7 +60,8 @@
             <div class="span12" style="background-color: #EEEEEE">
                 <div class="span2 v-center h-center" style="background-color: #DDDDDD">
                     <h1>{{ p.score }}</h1>
-                    <p><b><a class="btn btn-success"> <i class="icon-thumbs-up icon-white"></i>&nbsp;{{ p.upvotes }} </a>&nbsp;&nbsp; <a class="btn btn-danger"> <i class="icon-thumbs-down icon-white"></i>&nbsp;{{ p.downvotes }}</a></b></p>
+                    <p><a class="btn btn-success" id="voteUp-prop{{ p.id_num }}" title="I agree with this proposal." href="/parliament/proposals/vote/{{ p.id_num }}/up/"><b><i class="icon-thumbs-up icon-white"></i>&nbsp;{{ p.upvotes }}</b></a>&nbsp;
+                       <a class="btn btn-danger" id="voteDown-prop{{ p.id_num }}" title="I disagree with this proposal." href="/parliament/proposals/vote/{{ p.id_num }}/down/"><b><i class="icon-thumbs-down icon-white"></i>&nbsp;{{ p.downvotes }}</b></a>
                 </div>
                 <div class="span10">
                     <h3><a href="/parliament/proposals/{{ p.id_num }}/">{{ p.title }}</a></h3>
@@ -82,7 +84,8 @@
             <div class="span12" style="background-color: #EEEEEE">
                 <div class="span2 v-center h-center" style="background-color: #DDDDDD">
                     <h1>{{ p.score }}</h1>
-                    <p><b><a class="btn btn-success"> <i class="icon-thumbs-up icon-white"></i>&nbsp;{{ p.upvotes }} </a>&nbsp;&nbsp; <a class="btn btn-danger"> <i class="icon-thumbs-down icon-white"></i>&nbsp;{{ p.downvotes }}</a></b></p>
+                    <p><a class="btn btn-success" id="voteUp-prop{{ p.id_num }}" title="I agree with this proposal." href="/parliament/proposals/vote/{{ p.id_num }}/up/"><b><i class="icon-thumbs-up icon-white"></i>&nbsp;{{ p.upvotes }}</b></a>&nbsp;
+                       <a class="btn btn-danger" id="voteDown-prop{{ p.id_num }}" title="I disagree with this proposal." href="/parliament/proposals/vote/{{ p.id_num }}/down/"><b><i class="icon-thumbs-down icon-white"></i>&nbsp;{{ p.downvotes }}</b></a>
                 </div>
                 <div class="span10">
                     <h3><a href="/parliament/proposals/{{ p.id_num }}/">{{ p.title }}</a></h3>
@@ -102,7 +105,7 @@
 </div>
 {% else %}
     <div class="row-fluid">
-        <div class="span10 offset1" style="background-color: #EEEEEE">
+        <div class="span12" style="background-color: #EEEEEE">
             <p align="center">No proposals found.</p>
         </div>
     </div>
