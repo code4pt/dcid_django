@@ -1,0 +1,1 @@
+﻿DROP TABLE `parliament_opinion`, `parliament_proposalvote`, `parliament_tag_tagged_proposals`, `parliament_tag`, `parliament_proposal`, `parliament_person`;
