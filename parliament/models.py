@@ -7,7 +7,7 @@ class Person(models.Model):
     """
     Represents a real person capable of voting and proposing.
     """
-    id_num = models.PositiveIntegerField(primary_key=True)
+    id_num = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     email = models.EmailField()
 
@@ -52,7 +52,7 @@ class Proposal(models.Model):
     by other Persons. A proposal is backed up by the author's arguments and
     other Persons' Opinions.
     """
-    id_num = models.PositiveIntegerField(primary_key=True)
+    id_num = models.AutoField(primary_key=True)
     author = models.ForeignKey(Person, related_name="author")
     title = models.CharField(max_length=70)
     problem = models.CharField(max_length=300)
