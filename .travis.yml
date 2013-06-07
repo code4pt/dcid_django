@@ -1,0 +1,22 @@
+language: python
+
+env:
+    global:
+        - DJANGO=1.5.1
+        - PIP_USE_MIRRORS=true
+        - DJANGO_SETTINGS_MODULE=dcid.settings
+
+services: mysql
+
+before_script:
+  - mysql -e 'create database dcid_db;'
+
+python:
+    - "2.7"
+
+install:
+    - pip install -q Django==$DJANGO MySQL-python
+
+script:
+    - python manage.py syncdb --noinput
+    - python manage.py test
