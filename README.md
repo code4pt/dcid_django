@@ -1,6 +1,8 @@
 ~ DCID ~
 ========
 
+[![Build Status](https://travis-ci.org/joninvski/dcid.png?branch=master)](https://travis-ci.org/joninvski/dcid)
+
 *propose . discuss . decide*
 
 **D**ecisão do **Cid**adão
