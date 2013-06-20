@@ -3,8 +3,7 @@ from django.http import HttpResponseRedirect
 from parliament.models import Proposal, Tag, CreateProposalForm, ProposalVote, Person
 
 def index(request):
-	proposals_list = Proposal.objects.all().order_by('-timestamp')
-	return render(request, 'parliament/index.html', {'proposals_list': proposals_list})
+	return render(request, 'parliament/index.html')
 
 def proposals(request):
 	proposals_list = Proposal.objects.all().order_by('-timestamp')
