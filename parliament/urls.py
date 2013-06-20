@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-urlpatterns = patterns('parliament.views', #prefix
+urlpatterns = patterns('parliament.views',  # prefix
 	# Home
 	url(r'^$', 'index'),
 	
@@ -15,9 +15,12 @@ urlpatterns = patterns('parliament.views', #prefix
     url(r'^proposals/create/$', 'proposal_create'),
     url(r'^proposals/vote/(?P<proposal_id>\d+)/(?P<vote_direction>\S+)/$', 'proposal_vote'),
     
-    # Login / logout
-    url(r'^login/$', 'django.contrib.auth.views.login'),
-    url(r'^logout/$', 'logout_user'),
+    # Authentication
+    url(r'^user/login/$', 'login'),
+    url(r'^user/login/auth/$', 'auth_view'),
+    url(r'^user/login/success/$', 'login_success'),
+    url(r'^user/login/invalid/$', 'login_invalid'),
+    url(r'^user/logout/$', 'logout'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

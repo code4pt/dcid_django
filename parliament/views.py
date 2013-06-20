@@ -1,7 +1,8 @@
-from django.shortcuts import get_object_or_404, render
-from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect
 from parliament.models import Proposal, Tag, CreateProposalForm, ProposalVote, Person
+from django.shortcuts import get_object_or_404, render, render_to_response
+from django.http import HttpResponseRedirect
+from django.contrib import auth
+from django.core.context_processors import csrf
 
 
 def index(request):
@@ -9,8 +10,7 @@ def index(request):
     If users are authenticated, direct them to the main page. Otherwise, take
     them to the login page.
     """
-    proposals_list = Proposal.objects.all().order_by('-timestamp')
-    return render(request, 'parliament/index.html', {'proposals_list': proposals_list})
+    return render(request, 'parliament/index.html')
 
 
 def proposals(request):
@@ -54,16 +54,46 @@ def tag_detail(request, tag_name):
     return render(request, 'parliament/tag_detail.html', {'tag': tag, 'tagged_proposals': tagged_proposals})
 
 
-# ========== Login ==========
+# ========== Authentication ==========
 
-def logout_page(request):
+
+def login(request):
+	"""
+	TODO
+    """
+	c = {}
+	c.update(csrf(request))
+	return render_to_response('/parliament/login.html', c)
+
+
+def auth_view(request):
+	"""
+	Verifies if the user really exists, and if so logs in.
+	"""
+	username = request.POST.get('form_username', '')  # '' is a fool proof
+	password = request.POST.get('form_password', '')
+	user = auth.authenticate(username=username, password=password)  # returns a User if it exists, None otherwise
+	if user is not None:
+		auth.login(request, user)  # User exists, thus log him or her in
+		return HttpResponseRedirect('/parliament/user/login/success/')
+	else:
+		return HttpResponseRedirect('/parliament/user/login/invalid/')
+
+
+def login_success(request):
+	return render_to_response('/parliament/login_success.html', {'username', request.user.username})
+
+
+def login_invalid(request):
+	return render_to_response('/parliament/login_invalid.html')
+
+
+def logout(request):
     """
     Log users out and re-direct them to the main page.
     """
-    logout(request)
-    return HttpResponseRedirect('parliament/')
-
-
+    auth.logout(request)
+    return HttpResponseRedirect('/parliament/user/logout')
 
 
 # ========== Actions ==========
