@@ -28,9 +28,9 @@ class CreateProposalForm(forms.Form):
     from a user in order to create a proposal.
     """
     title = forms.CharField(label='Title', widget=forms.TextInput(attrs={ 'required': 'true', 'class': 'input-xxlarge' }));
-    problem = forms.CharField(label='Problem', widget=forms.Textarea(attrs={ 'required': 'true', 'rows': '3', 'class': 'input-xxlarge', 'placeholder': 'What problems needs to be solved? Use less than 300 characters.' }));
-    solution = forms.CharField(label='Solution', widget=forms.Textarea(attrs={ 'required': 'true', 'rows': '3', 'class': 'input-xxlarge', 'placeholder': 'How do you suggest the problem to be solved? Use less than 300 characters.' }));
-    benefits = forms.CharField(label='Benefits', widget=forms.Textarea(attrs={ 'required': 'true', 'rows': '3', 'class': 'input-xxlarge', 'placeholder': 'What are the benefits of implementing your proposal? Use less than 300 characters.' }));
+    problem = forms.CharField(label='Problem', widget=forms.Textarea(attrs={ 'required': 'true', 'rows': '3', 'class': 'input-xxlarge', 'placeholder': 'What problems needs to be solved? Use less than 500 characters.' }));
+    solution = forms.CharField(label='Solution', widget=forms.Textarea(attrs={ 'required': 'true', 'rows': '3', 'class': 'input-xxlarge', 'placeholder': 'How do you suggest the problem to be solved? Use less than 500 characters.' }));
+    benefits = forms.CharField(label='Benefits', widget=forms.Textarea(attrs={ 'required': 'true', 'rows': '3', 'class': 'input-xxlarge', 'placeholder': 'What are the benefits of implementing your proposal? Use less than 500 characters.' }));
     tags = forms.CharField(label='Tags', widget=forms.TextInput(attrs={ 'required': 'true', 'class': 'input-xlarge', 'placeholder': 'no-spaces, separate, by, commas' }))
 
 
@@ -55,9 +55,9 @@ class Proposal(models.Model):
     id_num = models.AutoField(primary_key=True)
     author = models.ForeignKey(Person, related_name="author")
     title = models.CharField(max_length=70)
-    problem = models.CharField(max_length=300)
-    solution = models.CharField(max_length=300)
-    benefits = models.CharField(max_length=300)
+    problem = models.CharField(max_length=500)
+    solution = models.CharField(max_length=500)
+    benefits = models.CharField(max_length=500)
     upvotes = models.PositiveIntegerField(default=0)
     downvotes = models.PositiveIntegerField(default=0)
     views = models.PositiveIntegerField(default=0)
