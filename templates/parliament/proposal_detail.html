@@ -3,18 +3,6 @@
 {% block title %}{{ proposal.title }}{% endblock %}
 {% block description %}{{ proposal.desc|slice:":50" }}{% endblock %}
 
-{% block navbar-content %}
-<div class="nav-collapse collapse" style="height: 0px;">
-    <ul class="nav">
-        <li><a href="/parliament/">Home</a></li>
-        <li class="active"><a href="/parliament/proposals/">Proposals</a></li>
-        <li><a href="/parliament/tags/">Tags</a></li>
-        <li><a href="#"><!-- empty space --></a></li>
-        <li><a href="/parliament/proposals/create">Make a proposal</a></li>
-    </ul>
-</div>
-{% endblock navbar-content %}
-
 {% block content %}
 <h1>{{ proposal.title }}</h1>
 <br/>
