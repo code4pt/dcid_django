@@ -5,17 +5,18 @@
 {% block content %}
 <h1>Login</h1>
 <br/>
-<p>Hello! Do we know each other?</p>
+<p class="lead">Hello! Do we know each other?</p>
 
 {% if form.errors %}
     <p>Your username and password did not match, please try again.</p>
 {% endif %}
 
-<form class="form" action="/parliament/user/login/auth" method="post">{% csrf_token %}
+<form class="form" action="/parliament/user/login/auth/" method="post">{% csrf_token %}
     <label for="username">Username: </label>
         <input type="text" name="form_username" value="" id="form_username" />
     <label for="password">Password: </label>
         <input type="password" name="form_password" value="" id="form_password" />
-    <input type="submit" value="Login" />
+     <br>
+    <input type="submit" class="btn" value="Login" />
 </form>
 {% endblock content %}

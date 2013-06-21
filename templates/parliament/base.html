@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Code4PT">
 
-        <link href="{{ STATIC_URL }}css/custom.css" rel="stylesheet">
         <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
         <style>
             body {padding-top: 60px;}
@@ -15,6 +14,7 @@
         <!-- override styles here -->
         {% endblock %}
         <link href="{{ STATIC_URL }}css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/custom.css" rel="stylesheet">
     
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -41,8 +41,10 @@
                             <li><a href="#"><!-- empty space --></a></li>
                             <li><a href="/parliament/proposals/create">Make a proposal</a></li>
                             <li><a href="#"><!-- empty space --></a></li>
+                        </ul>
+                        <ul class="nav pull-right">
                             {% block navbar-login %}
-                            <li><a href="/parliament/login/">Login</a></li>
+                            <li><a href="/parliament/user/login/">Login</a></li>
                             {% endblock navbar-login %}
                         </ul>
                     </div>
