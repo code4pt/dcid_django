@@ -1,7 +1,8 @@
 from parliament.models import Proposal, Tag, CreateProposalForm, ProposalVote, Person
-from django.shortcuts import get_object_or_404, render, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.contrib import auth
+from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 
 
@@ -59,7 +60,7 @@ def tag_detail(request, tag_name):
 
 def login(request):
     """
-    TODO
+    Sends a visitor to the login page.
     """
     c = {}
     c.update(csrf(request))
@@ -81,19 +82,54 @@ def auth_view(request):
 
 
 def login_success(request):
+    """
+    Shows a login success message.
+    """
     return render(request, 'parliament/login_success.html', {'username': request.user.username})
 
 
 def login_invalid(request):
+    """
+    Shows a login insuccess message.
+    """
     return render(request, 'parliament/login_invalid.html')
 
 
 def logout(request):
     """
-    Log users out and re-direct them to the main page.
+    Logs user out.
     """
     auth.logout(request)
     return HttpResponseRedirect('/parliament/user/logout/')
+
+
+# ========== Registration ==========
+
+
+def register(request):
+    """
+    TODO
+    """
+    is_error = False
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/parliament/user/register/success')
+        else:
+            is_error = True  # the form is not valid 
+    args = {}
+    args.update(csrf(request))    
+    args['form'] = UserCreationForm()
+    args['error'] = is_error
+    return render(request, 'parliament/register.html', args)
+
+
+def register_success(request):
+    """
+    Shows a success page after registering a user.
+    """
+    return render(request, 'parliament/register_success.html')
 
 
 # ========== Actions ==========

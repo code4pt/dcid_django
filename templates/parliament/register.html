@@ -1,0 +1,22 @@
+{% extends "parliament/base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<h1>Register</h1>
+<br/>
+<p class="lead">Nice to meet you! It's time to create your account:</p>
+
+{% if error %}
+    <span class="label label-important">Try again: the two passwords must be equal and you must respect the rules for the username.</span>
+    <br/>
+    <br/>
+{% endif %}
+
+<form class="form" action="/parliament/user/register/" method="post">{% csrf_token %}
+    {{ form }}
+    <br/>
+    <br/>
+    <input type="submit" class="btn btn-inverse" value="Register" />
+</form>
+{% endblock content %}

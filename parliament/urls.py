@@ -21,6 +21,10 @@ urlpatterns = patterns('parliament.views',  # prefix
     url(r'^user/login/success/$', 'login_success'),
     url(r'^user/login/invalid/$', 'login_invalid'),
     url(r'^user/logout/$', 'logout'),
+    
+    # Registration
+    url(r'^user/register/$', 'register'),
+    url(r'^user/register/success$', 'register_success'),
 )
 
 urlpatterns += staticfiles_urlpatterns()
