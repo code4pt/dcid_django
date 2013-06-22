@@ -111,7 +111,7 @@ def logout(request):
         del request.session['user_loggedin']  # delete login session
     except KeyError:
         pass
-    return HttpResponseRedirect('/parliament/user/logout/')
+    return render(request, 'parliament/logout.html')
 
 
 # ========== Registration ==========

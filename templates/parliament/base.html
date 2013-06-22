@@ -35,7 +35,7 @@
                     {% block navbar-content %}
                     <div class="nav-collapse collapse" style="height: 0px;">
                         <ul class="nav">
-                            <li class="active"><a href="/parliament/">Home</a></li>
+                            <li><a href="/parliament/">Home</a></li>
                             <li><a href="/parliament/proposals/">Proposals</a></li>
                             <li><a href="/parliament/tags/">Tags</a></li>
                             <li><a href="#"><!-- empty space --></a></li>
@@ -43,7 +43,11 @@
                         </ul>
                         <ul class="nav pull-right">
                             {% block navbar-login %}
-                            <li><a href="/parliament/user/login/">Login / Register</a></li>
+                            {% if request.session.user_loggedin != None %}
+                                <li><a href="/parliament/user/logout/">Logout, {{request.session.user_loggedin.username}}</a></li>
+                            {% else %}
+                                <li><a href="/parliament/user/login/">Login / Register</a></li>
+                            {% endif %}
                             {% endblock navbar-login %}
                         </ul>
                     </div>

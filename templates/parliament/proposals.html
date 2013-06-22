@@ -4,14 +4,6 @@
 {% block title %}Newest proposals{% endblock %}
 {% block description %}TODO{% endblock %}
 
-{% block navbar-login %}
-{% if request.session.user_loggedin != None %}
-    <li><a href="/parliament/user/logout/">Logout, {{request.session.user_loggedin.username}}</a></li>
-{% else %}
-    <li><a href="/parliament/user/login/">Login</a> | <a href="/parliament/user/register/">Register</a></li>
-{% endif %}
-{% endblock navbar-login %}
-
 {% block content %}
 <h1>Proposals</h1>
 <br/>
