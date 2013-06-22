@@ -1,6 +1,6 @@
 from parliament.models import Proposal, Tag, CreateProposalForm, ProposalVote, Person
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import auth
 from django.core.context_processors import csrf
 from forms import PersonRegistrationForm
@@ -25,6 +25,12 @@ def proposal_detail(request, proposal_id):
 
 
 def proposal_create(request):
+    # choose the language based on cookies
+    language = 'en-us'
+    session_language = 'en-us'
+    if 'lang' in request.COOKIES:
+        language = request.COOKIES['lang']
+    
     if request.method == 'POST':  # If the form has been submitted...
         form = CreateProposalForm(request.POST)  # A form bound to the POST data
         if form.is_valid():
@@ -40,7 +46,7 @@ def proposal_create(request):
             return HttpResponseRedirect('/parliament/proposal_create' + str(new_prop.id_num))  # Redirect after POST
     else:
         form = CreateProposalForm(auto_id=True)  # An unbound form
-        return render(request, 'parliament/proposal_create.html', {'form': form})
+        return render(request, 'parliament/proposal_create.html', {'form': form, 'language': language})
 
 
 def tags(request):
@@ -130,6 +136,18 @@ def register_success(request):
     Shows a success page after registering a user.
     """
     return render(request, 'parliament/register_success.html')
+
+
+# ========== Session ==========
+
+
+def language(request, language='en-us'):
+    """
+    Add a cookie to the response setting the language of that response 
+    """
+    response = HttpResponse("setting language to %s" % language)
+    response.set_cookie('lang', language)
+    return response
 
 
 # ========== Actions ==========
