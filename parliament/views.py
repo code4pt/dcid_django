@@ -78,7 +78,7 @@ def auth_view(request):
     Verifies if the user really exists, and if so logs in.
     """
     username = request.POST.get('form_username', '')  # '' is a fool proof
-    password = request.POST.get('form_password', '')
+    password = request.POST.get('form_password', '')  # '' is a fool proof
     user = auth.authenticate(username=username, password=password)  # returns a User if it exists, None otherwise
     if user is not None:
         auth.login(request, user)  # User exists, thus log him or her in

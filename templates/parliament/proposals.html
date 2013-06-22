@@ -4,17 +4,13 @@
 {% block title %}Newest proposals{% endblock %}
 {% block description %}TODO{% endblock %}
 
-{% block navbar-content %}
-<div class="nav-collapse collapse" style="height: 0px;">
-    <ul class="nav">
-        <li><a href="/parliament/">Home</a></li>
-        <li class="active"><a href="/parliament/proposals/">Proposals</a></li>
-        <li><a href="/parliament/tags/">Tags</a></li>
-        <li><a href="#"><!-- empty space --></a></li>
-        <li><a href="/parliament/proposals/create">Make a proposal</a></li>
-    </ul>
-</div>
-{% endblock navbar-content %}
+{% block navbar-login %}
+{% if request.session.user_loggedin != None %}
+    <li><a href="/parliament/user/logout/">Logout, {{request.session.user_loggedin.username}}</a></li>
+{% else %}
+    <li><a href="/parliament/user/login/">Login</a> | <a href="/parliament/user/register/">Register</a></li>
+{% endif %}
+{% endblock navbar-login %}
 
 {% block content %}
 <h1>Proposals</h1>
