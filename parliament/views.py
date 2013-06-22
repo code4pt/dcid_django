@@ -1,6 +1,6 @@
 from parliament.models import Proposal, Tag, CreateProposalForm, ProposalVote, Person
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.contrib import auth
 from django.core.context_processors import csrf
 from forms import PersonRegistrationForm
@@ -14,6 +14,9 @@ def index(request):
     return render(request, 'parliament/index.html')
 
 
+# ========== Proposals ==========
+
+
 def proposals(request):
     proposals_list = Proposal.objects.all().order_by('-timestamp')
     return render(request, 'parliament/proposals.html', {'proposals_list': proposals_list})
@@ -24,13 +27,7 @@ def proposal_detail(request, proposal_id):
     return render(request, 'parliament/proposal_detail.html', {'proposal': proposal})
 
 
-def proposal_create(request):
-    # choose the language based on cookies
-    language = 'en-us'
-    session_language = 'en-us'
-    if 'lang' in request.COOKIES:
-        language = request.COOKIES['lang']
-    
+def proposal_create(request):    
     if request.method == 'POST':  # If the form has been submitted...
         form = CreateProposalForm(request.POST)  # A form bound to the POST data
         if form.is_valid():
@@ -46,7 +43,10 @@ def proposal_create(request):
             return HttpResponseRedirect('/parliament/proposal_create' + str(new_prop.id_num))  # Redirect after POST
     else:
         form = CreateProposalForm(auto_id=True)  # An unbound form
-        return render(request, 'parliament/proposal_create.html', {'form': form, 'language': language})
+        return render(request, 'parliament/proposal_create.html', {'form': form})
+
+
+# ========== Tags ==========
 
 
 def tags(request):
@@ -82,6 +82,7 @@ def auth_view(request):
     user = auth.authenticate(username=username, password=password)  # returns a User if it exists, None otherwise
     if user is not None:
         auth.login(request, user)  # User exists, thus log him or her in
+        request.session['user_loggedin'] = user
         return HttpResponseRedirect('/parliament/user/login/success/')
     else:
         return HttpResponseRedirect('/parliament/user/login/invalid/')
@@ -106,6 +107,10 @@ def logout(request):
     Logs user out.
     """
     auth.logout(request)
+    try:
+        del request.session['user_loggedin']  # delete login session
+    except KeyError:
+        pass
     return HttpResponseRedirect('/parliament/user/logout/')
 
 
@@ -123,7 +128,9 @@ def register(request):
             form.save()
             return HttpResponseRedirect('/parliament/user/register/success')
         else:
-            is_error = True  # the form is not valid 
+            is_error = True  # the form is not valid
+    else:
+        raise Http404('Only POSTs are allowed')
     args = {}
     args.update(csrf(request))    
     args['form'] = PersonRegistrationForm()
@@ -141,13 +148,7 @@ def register_success(request):
 # ========== Session ==========
 
 
-def language(request, language='en-us'):
-    """
-    Add a cookie to the response setting the language of that response 
-    """
-    response = HttpResponse("setting language to %s" % language)
-    response.set_cookie('lang', language)
-    return response
+
 
 
 # ========== Actions ==========

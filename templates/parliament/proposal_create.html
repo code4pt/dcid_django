@@ -6,7 +6,6 @@
 {% block content %}
 <h1>Make a proposal</h1>
 <br/>
-<p>Language is: {{language}}</p>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <form class="form" action="/parliament/proposals/create/" method="post">{% csrf_token %}
 

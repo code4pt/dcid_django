@@ -25,9 +25,6 @@ urlpatterns = patterns('parliament.views',  # prefix
     # Registration
     url(r'^user/register/$', 'register'),
     url(r'^user/register/success$', 'register_success'),
-    
-    # Session
-    url(r'^lang/(?P<language>[a-z\-]+)/$', 'language'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

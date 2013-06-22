@@ -64,6 +64,9 @@ SOURCE_PATH = os.path.join(SITE_ROOT, 'source/')
 
 # URL used by @login_required to login a user
 LOGIN_URL = ''
+# URL the user is sent to after loggin in
+LOGIN_REDIRECT_URL =''
+
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
