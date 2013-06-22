@@ -9,9 +9,9 @@
 <div class="row-fluid">
     <div class="span9">
         <p class="lead">{{ proposal.problem }}</p>
-        <br/><h4>Solution</h4>
+        <br/><h4>Solução</h4>
         <p>{{ proposal.solution }}</p>
-        <br/><h4>Benefits</h4>
+        <br/><h4>Vantagens</h4>
         <p>{{ proposal.benefits }}</p>
         <br/> <!-- for low resolutions, separates the previous text from voting buttons bellow -->
     </div>
@@ -31,10 +31,10 @@
                 <a class="label label-info" href="/parliament/tags/{{ tag.name }}">{{ tag.name }}</a>
             {% endfor %}
         </p>
-        <p>viewed: <b>{{ proposal.views }} times</b></p>
-        <p>since: <b>{{ proposal.timestamp|date:"j M Y" }}</b></p>
-        <p>proposer: <b>{{ proposal.author.short_name }}</b></p>
-        <p><a class="btn" onclick="confirm_delete({{ proposal.id_num }})"><i class="icon-trash"></i> delete proposal</a></p>
+        <p>visto: <b>{{ proposal.views }} times</b></p>
+        <p>desde: <b>{{ proposal.timestamp|date:"j M Y" }}</b></p>
+        <p>autor da proposta: <b>{{ proposal.author.short_name }}</b></p>
+        <p><a class="btn" onclick="confirm_delete({{ proposal.id_num }})"><i class="icon-trash"></i> apagar proposta</a></p>
     </div>
 </div>
 <hr>
