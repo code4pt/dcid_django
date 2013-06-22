@@ -1,5 +1,6 @@
 # Django settings for dcid project.
 import os
+from django.conf import global_settings
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -98,16 +99,8 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-     # default
-     'django.contrib.auth.context_processors.auth',
-     'django.core.context_processors.debug',
-     'django.core.context_processors.i18n',
-     'django.core.context_processors.media',
-     'django.core.context_processors.static',
-     'django.core.context_processors.tz',
-     'django.contrib.messages.context_processors.messages',
-     # to access session variables from within a template: stackoverflow.com/questions/2551933
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    # to access session variables from within a template: stackoverflow.com/questions/2551933
      'django.core.context_processors.request',
 )
 
