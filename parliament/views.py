@@ -2,8 +2,8 @@ from parliament.models import Proposal, Tag, CreateProposalForm, ProposalVote, P
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.contrib import auth
-from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
+from forms import PersonRegistrationForm
 
 
 def index(request):
@@ -108,11 +108,11 @@ def logout(request):
 
 def register(request):
     """
-    TODO
+    Registers a user using Django built-in registration form
     """
     is_error = False
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = PersonRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/parliament/user/register/success')
@@ -120,7 +120,7 @@ def register(request):
             is_error = True  # the form is not valid 
     args = {}
     args.update(csrf(request))    
-    args['form'] = UserCreationForm()
+    args['form'] = PersonRegistrationForm()
     args['error'] = is_error
     return render(request, 'parliament/register.html', args)
 

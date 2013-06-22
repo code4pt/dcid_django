@@ -62,6 +62,9 @@ SITE_ROOT = os.path.abspath(os.path.dirname(__file__))
 STATIC_ROOT = os.path.join(SITE_ROOT, 'static/')
 SOURCE_PATH = os.path.join(SITE_ROOT, 'source/')
 
+# URL used by @login_required to login a user
+LOGIN_URL = ''
+
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
