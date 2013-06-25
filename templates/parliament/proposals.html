@@ -1,18 +1,18 @@
 {% extends "parliament/base.html" %}
 {% load humanize %}
 
-{% block title %}Novas Propostas{% endblock %}
+{% block title %}Newest proposals{% endblock %}
 {% block description %}TODO{% endblock %}
 
 {% block content %}
-<h1>Propostas</h1>
+<h1>Proposals</h1>
 <br/>
 <!-- tabs to select sorting criteria -->
 <div>
     <ul class="nav nav-tabs" id="SortingCriteriaTabs">
-        <li class="active"><a href="#OrderByTimestamp" data-toggle="tab" text="most recently added proposals">Recente</a></li>
-        <li><a href="#OrderByScore" data-toggle="tab" text="proposals with the highest scores, in descending order">Favorita</a></li>
-        <li><a href="#OrderByViews" data-toggle="tab" text="proposals with the most views, in descending order">Mais visualizada</a></li>
+        <li class="active"><a href="#OrderByTimestamp" data-toggle="tab" text="most recently added proposals">Recent</a></li>
+        <li><a href="#OrderByScore" data-toggle="tab" text="proposals with the highest scores, in descending order">Most likeable</a></li>
+        <li><a href="#OrderByViews" data-toggle="tab" text="proposals with the most views, in descending order">Most viewed</a></li>
     </ul>
 </div>
 {% if proposals_list %}
@@ -52,7 +52,7 @@
                 </div>
                 <div class="span10">
                     <h3><a href="/parliament/proposals/{{ p.id_num }}/">{{ p.title }}</a></h3>
-                    <p>Proposta por <a href="#">{{ p.author.short_name }}</a>, in {{ p.timestamp|date:"j F Y" }}</p>
+                    <p>Proposed by <a href="#">{{ p.author.short_name }}</a>, in {{ p.timestamp|date:"j F Y" }}</p>
                     <p>
                         {% for tag in p.tag_set.all %}
                             <a class="label label-info" href="/parliament/tags/{{ tag.name }}">{{ tag.name }}</a>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="span10">
                     <h3><a href="/parliament/proposals/{{ p.id_num }}/">{{ p.title }}</a></h3>
-                    <p>Proposta por <a href="#">{{ p.author.short_name }}</a>, in {{ p.timestamp|date:"j F Y" }}</p>
+                    <p>Proposed by <a href="#">{{ p.author.short_name }}</a>, in {{ p.timestamp|date:"j F Y" }}</p>
                     <p>
                         {% for tag in p.tag_set.all %}
                             <a class="label label-info" href="/parliament/tags/{{ tag.name }}">{{ tag.name }}</a>
@@ -93,7 +93,7 @@
 {% else %}
     <div class="row-fluid">
         <div class="span12" style="background-color: #EEEEEE">
-            <p align="center">Não foram encontradas propostas.</p>
+            <p align="center">No proposals found.</p>
         </div>
     </div>
 {% endif %}
