@@ -1,5 +1,6 @@
 from django.contrib import admin
-from parliament.models import *
+from parliament.models import 
+from parliament.models import Person, Proposal, Opinion, Tag
 
 class ProposalAdmin(admin.ModelAdmin):
     search_fields = ['title', 'desc']

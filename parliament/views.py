@@ -1,6 +1,6 @@
 from parliament.models import Proposal, Tag, CreateProposalForm, ProposalVote, Person
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponseRedirect, HttpResponse, Http404
+from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.core.context_processors import csrf
 from forms import PersonRegistrationForm
@@ -27,6 +27,7 @@ def proposal_detail(request, proposal_id):
     return render(request, 'parliament/proposal_detail.html', {'proposal': proposal})
 
 
+#@login_required
 def proposal_create(request):    
     if request.method == 'POST':  # If the form has been submitted...
         form = CreateProposalForm(request.POST)  # A form bound to the POST data
@@ -129,8 +130,6 @@ def register(request):
             return HttpResponseRedirect('/parliament/user/register/success')
         else:
             is_error = True  # the form is not valid
-    else:
-        raise Http404('Only POSTs are allowed')
     args = {}
     args.update(csrf(request))    
     args['form'] = PersonRegistrationForm()
@@ -154,6 +153,7 @@ def register_success(request):
 # ========== Actions ==========
 
 
+#@login_required
 def proposal_vote(request, proposal_id, vote_direction):
     proposal = get_object_or_404(Proposal, pk=proposal_id)
     voter = Person.objects.get(id_num=5555)  # TODO use login module
